@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ishita Gupta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a3a5c;
+      --link: #1a5fa8;
+      --ink: #222;
+      --muted: #666;
+      --light: #f5f5f3;
+      --border: #e0ddd8;
+      --sidebar: 210px;
+    }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background: #fff;
+      display: flex;
+      min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    aside {
+      width: var(--sidebar);
+      min-width: var(--sidebar);
+      padding: 3rem 1.5rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .photo-wrap {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--light);
+      border: 2px solid var(--border);
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+    }
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--muted);
+      background: var(--light);
+    }
+    .photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sidebar-name { font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 0.1rem; line-height: 1.3; }
+    .sidebar-role { font-size: 0.78rem; font-weight: 300; color: var(--muted); margin-bottom: 1.4rem; line-height: 1.5; }
+    .sidebar-links { display: flex; flex-direction: column; gap: 0.45rem; width: 100%; }
+    .sidebar-links a { font-size: 0.78rem; font-weight: 400; color: var(--link); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.15s; }
+    .sidebar-links a:hover { color: var(--navy); }
+    .sidebar-links svg { width: 13px; height: 13px; flex-shrink: 0; opacity: 0.6; }
+    main { flex: 1; padding: 3rem 3.5rem 4rem 3rem; max-width: 740px; }
+    .greeting { font-size: 1.6rem; margin-bottom: 1.25rem; }
+    .intro { font-size: 0.97rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 1.4rem; font-weight: 300; }
+    .intro b { font-weight: 700; color: var(--ink); }
+    .cta { font-size: 0.9rem; color: var(--muted); margin-bottom: 2.8rem; font-weight: 300; }
+    .cta a { color: var(--link); text-decoration: none; }
+    .cta a:hover { text-decoration: underline; }
+    .section { margin-bottom: 2.6rem; }
+    .section-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+    .pub-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .pub { padding-bottom: 1.2rem; border-bottom: 1px solid var(--border); }
+    .pub:last-child { border-bottom: none; padding-bottom: 0; }
+    .pub-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; flex-wrap: wrap; }
+    .pub-badge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.12rem 0.5rem; border-radius: 3px; }
+    .badge-conf     { background: #e8f0fb; color: #1a5fa8; }
+    .badge-workshop { background: #f0f7f3; color: #217a52; }
+    .badge-poster   { background: #fdf5e8; color: #8a5a00; }
+    .badge-venue    { background: #f2f2f0; color: #666; }
+    .pub-title { font-size: 0.9rem; font-weight: 700; color: var(--navy); line-height: 1.45; margin-bottom: 0.15rem; }
+    .pub-title a { color: inherit; text-decoration: none; }
+    .pub-title a:hover { color: var(--link); }
+    .pub-authors { font-size: 0.82rem; color: var(--muted); font-weight: 300; margin-bottom: 0.12rem; }
+    .pub-authors strong { font-weight: 700; color: var(--ink); }
+    .pub-venue { font-size: 0.82rem; color: var(--muted); font-style: italic; }
+    .pub-links { display: flex; gap: 0.6rem; margin-top: 0.35rem; flex-wrap: wrap; }
+    .pub-link { font-size: 0.72rem; font-weight: 400; color: var(--link); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+    .pub-link:hover { border-color: var(--link); }
+    .exp-list { display: flex; flex-direction: column; gap: 1.1rem; }
+    .exp { display: flex; gap: 0.9rem; align-items: flex-start; }
+    .exp-logo { width: 36px; height: 36px; border-radius: 6px; border: 1px solid var(--border); overflow: hidden; flex-shrink: 0; background: var(--light); display: flex; align-items: center; justify-content: center; }
+    .exp-logo img { width: 100%; height: 100%; object-fit: contain; padding: 3px; }
+    .exp-logo-text { font-size: 0.55rem; font-weight: 700; color: var(--muted); text-align: center; line-height: 1.2; padding: 2px; }
+    .exp-role { font-size: 0.88rem; font-weight: 700; color: var(--ink); line-height: 1.35; }
+    .exp-where { font-size: 0.8rem; color: var(--link); font-weight: 400; margin-bottom: 0.15rem; }
+    .exp-desc { font-size: 0.83rem; color: var(--muted); font-weight: 300; line-height: 1.65; }
+    footer { margin-top: 3rem; font-size: 0.73rem; color: #bbb; font-weight: 300; }
+    @media (max-width: 680px) {
+      body { flex-direction: column; }
+      aside { width: 100%; min-width: unset; height: auto; position: static; border-bottom: 1px solid var(--border); flex-direction: row; flex-wrap: wrap; align-items: center; padding: 1.5rem; gap: 1rem; }
+      .photo-wrap { margin-bottom: 0; width: 70px; height: 70px; }
+      .sidebar-role { display: none; }
+      .sidebar-links { flex-direction: row; flex-wrap: wrap; gap: 0.75rem; }
+      main { padding: 1.5rem 1.25rem 3rem; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<aside>
+  <div class="photo-wrap">
+    <!-- Replace the line below with: <img src="photo.jpg" alt="Ishita Gupta"> -->
+    <div class="photo-placeholder">IG</div>
+  </div>
+  <p class="sidebar-name">Ishita Gupta</p>
+  <p class="sidebar-role">Human-AI Interaction Researcher</p>
+  <div class="sidebar-links">
+    <a href="mailto:ms.ishitagupta@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      Email
+    </a>
+    <a href="resume.pdf" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      CV / Resume
+    </a>
+    <a href="https://scholar.google.com/citations?user=XXXXXX" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+      Google Scholar
+    </a>
+    <a href="https://linkedin.com/in/ishitagupta" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://twitter.com/yourhandle" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      Twitter / X
+    </a>
+  </div>
+</aside>
+
+<main>
+  <div class="greeting">Hi! 👋</div>
+
+  <div class="intro">
+    <p>I'm Ishita, a <b>human-AI interaction researcher</b> currently working as a Research Associate at the <b>Melange Lab, IIIT Delhi</b>, with Dr. Pushpendra Singh. My current work explores how people interact with AI in mental health contexts, specifically how AI systems can be designed to support users with OCD safely and responsibly.</p>
+    <br/>
+    <p>More broadly, I'm interested in <b>responsible AI</b> and <b>human-centred explainable AI</b> for healthcare. How can we make AI systems that are not just accurate, but interpretable, fair, and genuinely useful to the people who need them most?</p>
+    <br/>
+    <p>Before this, I worked as an <b>AI Safety Researcher at Enkrypt AI</b>, where I focused on representational harms and bias in large language models, developing evaluation frameworks for auditing socioeconomic, gender, and partisan biases across global and Indian contexts. My work on gender bias in Hindi text generation was published at <b>ACM FAccT 2025</b>, in collaboration with Prof. Tapan Parikh at Cornell Tech.</p>
+  </div>
+
+  <p class="cta">To know more about my work, check out my <a href="resume.pdf">resume</a> or drop me an <a href="mailto:ms.ishitagupta@gmail.com">email</a>!</p>
+
+  <div class="section" id="publications">
+    <h2 class="section-title">Publications</h2>
+    <div class="pub-list">
+
+      <div class="pub">
+        <div class="pub-meta">
+          <span class="pub-badge badge-conf">Conference</span>
+          <span class="pub-badge badge-venue">ACM FAccT 2025</span>
+        </div>
+        <p class="pub-title">
+          <a href="https://dl.acm.org/doi/10.1145/3715275.3732208" target="_blank">"Since Lawyers are Males..": Examining Implicit Gender Bias in Hindi Language Generation by LLMs</a>
+        </p>
+        <p class="pub-authors"><strong>Ishita Gupta</strong>, Ishika Joshi, Adrita Dey, Tapan Parikh</p>
+        <p class="pub-venue">ACM Conference on Fairness, Accountability, and Transparency · June 2025</p>
+        <div class="pub-links">
+          <a class="pub-link" href="https://dl.acm.org/doi/10.1145/3715275.3732208" target="_blank">ACM DL</a>
+          <a class="pub-link" href="https://arxiv.org/abs/2409.13484" target="_blank">arXiv</a>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-meta">
+          <span class="pub-badge badge-workshop">Workshop Poster</span>
+          <span class="pub-badge badge-venue">AAAI 2026</span>
+        </div>
+        <p class="pub-title">
+          <a href="https://arxiv.org/abs/2604.02660" target="_blank">SocioEval: A Template-Based Framework for Evaluating Socioeconomic Status Bias in Foundation Models</a>
+        </p>
+        <p class="pub-authors">Divyanshu Kumar, <strong>Ishita Gupta</strong>, Nitin Aravind Birur, Tanay Baswa, Sahil Agarwal, Prashanth Harshangi</p>
+        <p class="pub-venue">AAAI Workshop · 2026</p>
+        <div class="pub-links">
+          <a class="pub-link" href="https://arxiv.org/abs/2604.02660" target="_blank">arXiv</a>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-meta">
+          <span class="pub-badge badge-workshop">Workshop Poster</span>
+          <span class="pub-badge badge-venue">NeurIPS</span>
+        </div>
+        <p class="pub-title">
+          <a href="https://arxiv.org/abs/2509.22711" target="_blank">Beyond Western Politics: Cross-Cultural Benchmarks for Evaluating Partisan Associations in LLMs</a>
+        </p>
+        <p class="pub-authors">Divyanshu Kumar, <strong>Ishita Gupta</strong>, Nitin Aravind Birur, Tanay Baswa, Sahil Agarwal, Prashanth Harshangi</p>
+        <p class="pub-venue">NeurIPS Workshop</p>
+        <div class="pub-links">
+          <a class="pub-link" href="https://arxiv.org/abs/2509.22711" target="_blank">arXiv</a>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-meta">
+          <span class="pub-badge badge-poster">Conference</span>
+          <span class="pub-badge badge-venue">ICoRD'23 · Springer</span>
+        </div>
+        <p class="pub-title">
+          <a href="#" target="_blank">EcoWallet</a>
+          <!-- Replace href="#" with the Springer/DOI link once available -->
+        </p>
+        <p class="pub-authors"><strong>Ishita Gupta</strong>, Subhajit Chandra</p>
+        <p class="pub-venue">Design in the Era of Industry 4.0, Springer Smart Innovation, Systems and Technologies · January 2023</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section" id="experience">
+    <h2 class="section-title">Experience</h2>
+    <div class="exp-list">
+
+      <div class="exp">
+        <div class="exp-logo">
+          <!-- Replace with: <img src="iiitd-logo.png" alt="IIIT Delhi"> -->
+          <!-- Logo: https://iiitd.ac.in/about/graphic-identity -->
+          <span class="exp-logo-text">IIIT-D</span>
+        </div>
+        <div>
+          <p class="exp-role">Research Associate</p>
+          <p class="exp-where">Melange Lab, IIIT Delhi · Dr. Pushpendra Singh</p>
+          <p class="exp-desc">Safe human-AI interaction for OCD; human-centred explainable AI for healthcare.</p>
+        </div>
+      </div>
+
+      <div class="exp">
+        <div class="exp-logo">
+          <!-- Replace with: <img src="enkryptai-logo.png" alt="Enkrypt AI"> -->
+          <!-- Logo: https://enkryptai.com -->
+          <span class="exp-logo-text">Enkrypt AI</span>
+        </div>
+        <div>
+          <p class="exp-role">AI Safety Researcher</p>
+          <p class="exp-where">Enkrypt AI</p>
+          <p class="exp-desc">Template-based bias auditing framework for LLMs across socioeconomic, gender, and partisan dimensions in global and Indian contexts.</p>
+        </div>
+      </div>
+
+      <div class="exp">
+        <div class="exp-logo">
+          <!-- Replace with: <img src="cornell-logo.png" alt="Cornell Tech"> -->
+          <span class="exp-logo-text">Cornell Tech</span>
+        </div>
+        <div>
+          <p class="exp-role">Independent Research Collaboration</p>
+          <p class="exp-where">with Prof. Tapan Parikh · Cornell Tech</p>
+          <p class="exp-desc">Gender bias in Hindi LLM output, published at ACM FAccT 2025.</p>
+        </div>
+      </div>
+
+      <div class="exp">
+        <div class="exp-logo">
+          <!-- Replace with: <img src="nus-logo.png" alt="NUS"> -->
+          <span class="exp-logo-text">NUS</span>
+        </div>
+        <div>
+          <p class="exp-role">Research Intern</p>
+          <p class="exp-where">National University of Singapore</p>
+          <p class="exp-desc">Usability challenges for LLM-powered head-mounted displays for text editing in XR environments.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>ishitagupta.github.io · last updated May 2025</footer>
+</main>
+</body>
+</html>
